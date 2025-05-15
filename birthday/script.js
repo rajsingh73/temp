@@ -19,19 +19,25 @@ const CONFIG = {
 };
 
 // Particles Animation
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    setInterval(() => {
+function createParticles(containerId) {
+    const particlesContainer = document.getElementById(containerId);
+    
+    function createParticle() {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + 'vw';
         particle.style.width = particle.style.height = Math.random() * 15 + 5 + 'px';
+        particle.style.opacity = Math.random() * 0.5 + 0.2; // Varying opacity
+        particle.style.animationDuration = Math.random() * 3 + 4 + 's'; // Random duration
         particlesContainer.appendChild(particle);
         
         setTimeout(() => {
             particle.remove();
         }, 6000);
-    }, 200);
+    }
+
+    // Create particles at regular intervals
+    setInterval(createParticle, 200);
 }
 
 // Page Transition
@@ -47,10 +53,12 @@ document.getElementById('heart').addEventListener('click', () => {
         mainPage.classList.remove('hidden');
         startMainPageAnimations();
         
+        // Start particles on main page
+        createParticles('main-particles');
+        
         // Start audio and update icon
         audio.currentTime = 17;
         audio.play().then(() => {
-            // Update icon to playing state
             audioControl.innerHTML = `
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
@@ -244,5 +252,5 @@ function initializeAudio() {
     });
 }
 
-// Start the initial animations
-createParticles();
+// Start the initial animations for landing page
+createParticles('particles');
