@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-pink-100 to-purple-100 min-h-screen">
+    <!-- Page 1: Landing -->
+    <div id="landing-page" class="fixed inset-0 flex flex-col items-center justify-center z-50 bg-gradient-to-br from-pink-100 to-purple-100">
+        <div id="heart" class="cursor-pointer transform hover:scale-110 transition-transform duration-300">
+            <svg class="w-32 h-32 text-pink-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+            </svg>
+        </div>
+        <p class="mt-6 text-xl text-pink-600 animate-bounce font-dancing">Click the heart to begin</p>
+        <div id="particles"></div>
+    </div>
+
+    <!-- Page 2: Main Birthday Page -->
+    <div id="main-page" class="hidden min-h-screen overflow-y-auto pb-20 relative">
+        <!-- Background Particles -->
+        <div id="main-particles" class="fixed inset-0 pointer-events-none z-0"></div>
+
+        <!-- Audio Control -->
+        <button id="audio-control" class="fixed top-4 right-4 z-50 bg-white/80 p-2 rounded-full shadow-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M12 18.012l-7-4.2V10.2l7-4.2v12.012z"/>
+            </svg>
+        </button>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Birthday Message -->
+            <div class="text-center pt-16">
+                <h1 class="text-5xl md:text-6xl font-dancing text-pink-600 opacity-0 transform translate-y-10 transition-all duration-1000" id="birthday-heading">
+                    Happy Birthday, Ruchika!
+                </h1>
+            </div>
+
+            <!-- Wishes Section -->
+            <div class="mt-12 text-center">
+                <div id="wishes-container" class="h-24 flex items-center justify-center">
+                    <p class="text-2xl font-dancing text-purple-600 opacity-0 wish-text"></p>
+                </div>
+            </div>
+
+            <!-- Photos Section -->
+            <div class="mt-12 relative h-64 md:h-96">
+                <div id="photos-container" class="absolute inset-0 flex items-center justify-center">
+                    <!-- Photos will be added dynamically -->
+                </div>
+            </div>
+
+            <!-- Age Counter -->
+            <div class="mt-12 mb-8 text-center bg-white/50 backdrop-blur-sm py-8 px-4 rounded-xl max-w-2xl mx-auto shadow-lg">
+                <h2 class="text-2xl font-dancing text-pink-600 mb-6">Time</h2>
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4" id="age-counter">
+                    <div class="text-center p-3 bg-white/70 rounded-lg shadow-md">
+                        <span class="block text-3xl font-bold text-purple-600" id="years">0</span>
+                        <span class="text-sm text-gray-600">Years</span>
+                    </div>
+                    <div class="text-center p-3 bg-white/70 rounded-lg shadow-md">
+                        <span class="block text-3xl font-bold text-purple-600" id="months">0</span>
+                        <span class="text-sm text-gray-600">Months</span>
+                    </div>
+                    <div class="text-center p-3 bg-white/70 rounded-lg shadow-md">
+                        <span class="block text-3xl font-bold text-purple-600" id="days">0</span>
+                        <span class="text-sm text-gray-600">Days</span>
+                    </div>
+                    <div class="text-center p-3 bg-white/70 rounded-lg shadow-md">
+                        <span class="block text-3xl font-bold text-purple-600" id="hours">0</span>
+                        <span class="text-sm text-gray-600">Hours</span>
+                    </div>
+                    <div class="text-center p-3 bg-white/70 rounded-lg shadow-md">
+                        <span class="block text-3xl font-bold text-purple-600" id="minutes">0</span>
+                        <span class="text-sm text-gray-600">Minutes</span>
+                    </div>
+                    <div class="text-center p-3 bg-white/70 rounded-lg shadow-md">
+                        <span class="block text-3xl font-bold text-purple-600" id="seconds">0</span>
+                        <span class="text-sm text-gray-600">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="assets/aud.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html> 
