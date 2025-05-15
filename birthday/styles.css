@@ -10,20 +10,41 @@
     border-radius: 50%;
     pointer-events: none;
     animation: float 6s ease-in-out infinite;
+    z-index: 1;
 }
 
 @keyframes float {
     0% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(100vh) rotate(0deg);
         opacity: 0;
     }
-    50% {
-        opacity: 0.8;
+    20% {
+        opacity: var(--particle-opacity, 0.6);
+    }
+    80% {
+        opacity: var(--particle-opacity, 0.6);
     }
     100% {
-        transform: translateY(-100vh) rotate(360deg);
+        transform: translateY(-20vh) rotate(360deg);
         opacity: 0;
     }
+}
+
+/* Make sure main page content is above particles */
+#main-page .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure particles container spans full viewport */
+#main-particles, #particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
 }
 
 /* Page Transition */
