@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const proposalText = document.getElementById('proposal-text');
     const quoteText = document.querySelector('.quote-text');
 
+    // Track if it's the first click
+    let isFirstClick = true;
+
     const romanticProposals = [
         "I can't imagine my life without you 🥺",
         "You're the missing piece to my heart 💝",
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shakeNoButton();
         moveNoButton();
         updateProposalText();
+        isFirstClick = false;
     });
 
     // Prevent closing popup by clicking outside
@@ -72,13 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
-    // Function to randomly move the No button
+    // Function to randomly move the No button with adjusted size
     function moveNoButton() {
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50);
+        // Reset button size based on screen size
+        const isMobile = window.innerWidth <= 480;
+        const buttonSize = isMobile ? '100px' : '120px';
+        
         noBtn.style.position = 'fixed';
-        noBtn.style.left = `${Math.max(25, Math.min(x, window.innerWidth - noBtn.offsetWidth - 25))}px`;
-        noBtn.style.top = `${Math.max(25, Math.min(y, window.innerHeight - noBtn.offsetHeight - 25))}px`;
+        noBtn.style.width = buttonSize;
+        noBtn.style.height = 'auto';
+        noBtn.style.padding = isMobile ? '0.6rem 1rem' : '0.8rem 2rem';
+        noBtn.style.fontSize = isMobile ? '0.9rem' : '1.1rem';
+
+        // Calculate safe margins
+        const margin = isMobile ? 10 : 25;
+        const maxWidth = window.innerWidth - noBtn.offsetWidth - (margin * 2);
+        const maxHeight = window.innerHeight - noBtn.offsetHeight - (margin * 2);
+
+        // Calculate new position
+        const x = Math.random() * maxWidth + margin;
+        const y = Math.random() * maxHeight + margin;
+
+        // Apply new position
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
     }
 
     // Function to update proposal text
