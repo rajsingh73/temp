@@ -29,7 +29,7 @@ var progress = document.querySelector(".progress");
     function progressInterva() {
         if (count == 100 && percentWidth == 100) {
             clearInterval(progressLoad)
-            percent.textContent = "Okay, it's ready 😊:)";
+            percent.textContent = "It's ready 😊:)";
             percent.style.letterSpacing = "1px";
 
             // Final heart animation
